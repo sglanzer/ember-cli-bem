@@ -69,7 +69,7 @@ export default Mixin.create({
     if (block && elemName) {
       return elem(block, elemName, scopedHashString);
     } else if (block) {
-      return `${block}`;
+      return `_${block}_${scopedHashString}`;
     }
   }),
 
