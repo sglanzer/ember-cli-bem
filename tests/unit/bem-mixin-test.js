@@ -15,22 +15,22 @@ const {
 
 module('Unit | Mixin | BEM');
 
-test('should correctly calculate blockClassName with blockName', withChai(function(expect, assert) {
+test('should correctly calculate blockClassName with block', withChai(function(expect, assert) {
   assert.expect(1);
 
   const block = Object.extend(BEM, {
-    blockName: 'checkbox',
+    block: 'checkbox',
   }).create();
 
   const blockClassName = get(block, 'blockClassName');
   expect(blockClassName).to.be.equal('checkbox');
 }));
 
-test('should correctly calculate blockClassName with blockName and elemName', withChai(function(expect, assert) {
+test('should correctly calculate blockClassName with block and elemName', withChai(function(expect, assert) {
   assert.expect(1);
 
   const block = Object.extend(BEM, {
-    blockName: 'checkbox',
+    block: 'checkbox',
     elemName: 'label',
   }).create();
 
@@ -42,7 +42,7 @@ test('should calculate mod with string value', withChai(function(expect, assert)
   assert.expect(1);
 
   const redButton = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'color',
     ],
@@ -57,7 +57,7 @@ test('should calculate mod with boolean value', withChai(function(expect, assert
   assert.expect(1);
 
   const disabledButton = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'disabled',
     ],
@@ -72,7 +72,7 @@ test('should calculate mod with custom value key', withChai(function(expect, ass
   assert.expect(1);
 
   const selectModeButton = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'selectMode:select-mode',
     ],
@@ -87,7 +87,7 @@ test('should hide mod with false boolean value', withChai(function(expect, asser
   assert.expect(1);
 
   const hiddenButton = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'hidden',
     ],
@@ -102,7 +102,7 @@ test('should use negative mod name if it exists and value if false', withChai(fu
   assert.expect(1);
 
   const negativeStateButton = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'pressed:pressed:non-pressed',
     ],
@@ -117,7 +117,7 @@ test('should calculate multiple mods', withChai(function(expect, assert) {
   assert.expect(1);
 
   const complexButton = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'disabled',
       'color',
@@ -134,7 +134,7 @@ test('should recalculate modsClassNames when dependent property has changed', wi
   assert.expect(2);
 
   const button = Object.extend(BEM, {
-    blockName: 'button',
+    block: 'button',
     mods: [
       'color',
     ],

@@ -9,7 +9,7 @@ moduleForComponent('helper:element', 'Integration | Helper | element', {
 test('it should get blockName by default', withChai(function(expect, assert) {
   assert.expect(1);
 
-  this.set('blockName', 'foo');
+  this.set('block', 'foo');
   this.render(hbs`{{element 'bar'}}`);
 
   expect(this.$().text().trim()).to.be.equal('foo__bar');
@@ -18,7 +18,7 @@ test('it should get blockName by default', withChai(function(expect, assert) {
 test('it should use specified blockName', withChai(function(expect, assert) {
   assert.expect(1);
 
-  this.render(hbs`{{element '123' blockName='abc'}}`);
+  this.render(hbs`{{element '123' block='abc'}}`);
 
   expect(this.$().text().trim()).to.be.equal('abc__123');
 }));
@@ -26,7 +26,7 @@ test('it should use specified blockName', withChai(function(expect, assert) {
 test('it should generate mods class names', withChai(function(expect, assert) {
   assert.expect(1);
 
-  this.set('blockName', 'foo');
+  this.set('block', 'foo');
   this.render(hbs`{{element 'bar' hidden=true type='primary' disabled=false}}`);
 
   const classNames = this.$().text().trim().split(' ').sort();

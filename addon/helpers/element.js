@@ -5,7 +5,7 @@ const {
   Helper: { helper }
 } = Ember;
 
-const BLOCK_KEY = 'blockName';
+const BLOCK_KEY = 'block';
 
 export default helper(function(params, hash) {
   const blockName = hash[BLOCK_KEY];
