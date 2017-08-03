@@ -9,7 +9,10 @@ const {
 } = Ember;
 
 export function elem(block, elemName, scopedHashString) {
-  return `_${block}__${elemName}_${scopedHashString}`;
+  if (scopedHashString) {
+    return `_${block}__${elemName}_${scopedHashString}`;
+  }
+  return `${block}__${elemName}`;
 }
 
 export function mod(block, modDefinition, scopedHashString) {

@@ -20,13 +20,14 @@ export default helper(function(params, hash) {
     throw Error(`${BLOCK_KEY} is required for 'elem' helper`);
   }
 
-  const elemClassName = elem(block, elemName, scopedHashString);
+  const elemClassName = elem(block, elemName);
+  const scopedElementClassName = elem(block, elemName, scopedHashString);
 
   const modNames = Object.keys(hash).filter((key) => key !== BLOCK_KEY && key !== SCOPE_KEY);
-  const modClassNames = modNames.map((modName) => {
+  const scopedModClassNames = modNames.map((modName) => {
     const modValue = hash[modName];
     return mod(elemClassName, { modName, modValue }, scopedHashString);
   });
 
-  return [elemClassName, ...modClassNames].filter(Boolean).join(' ');
+  return [scopedElementClassName, ...scopedModClassNames].filter(Boolean).join(' ');
 });
