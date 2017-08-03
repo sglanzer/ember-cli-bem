@@ -6,12 +6,13 @@ const {
 } = Ember;
 
 const BLOCK_KEY = 'block';
+const SCOPE_KEY = 'scopedStyles';
 
 export default helper(function(params, hash) {
   const block = hash[BLOCK_KEY];
   const [ elemName ] = params;
 
-  const scopedStyles = hash['scopedStyles']
+  const scopedStyles = hash[SCOPE_KEY]
   const scopedBlock = scopedStyles[block]
   const scopedHashString = scopedBlock.slice(scopedBlock.lastIndexOf('_') + 1)
 
@@ -21,7 +22,7 @@ export default helper(function(params, hash) {
 
   const elemClassName = elem(block, elemName, scopedHashString);
 
-  const modNames = Object.keys(hash).filter((key) => key !== BLOCK_KEY);
+  const modNames = Object.keys(hash).filter((key) => key !== BLOCK_KEY && key !== SCOPE_KEY);
   const modClassNames = modNames.map((modName) => {
     const modValue = hash[modName];
     return mod(elemClassName, { modName, modValue }, scopedHashString);
