@@ -18,12 +18,12 @@ export function mod(blockName, modDefinition) {
 
   if (typeof modValue === 'boolean') {
     if (hasNegativeModName && !modValue) {
-      return `${blockName}_${negativeModName}`;
+      return `${blockName}--${negativeModName}`;
     } else if (modValue) {
-      return `${blockName}_${modName}`;
+      return `${blockName}--${modName}`;
     }
   } else if (modValue) {
-    return `${blockName}_${modName}_${modValue}`;
+    return `${blockName}--${modName}-${modValue}`;
   }
 }
 
