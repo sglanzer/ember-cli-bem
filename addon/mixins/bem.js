@@ -59,12 +59,15 @@ export default Mixin.create({
     );
   },
 
-  blockClassName: computed('block', 'elemName', function() {
+  blockClassName: computed('block', 'elemName', '__styles__', function() {
     const block = get(this, 'block');
     const elemName = get(this, 'elemName');
+    const scopedStyles = get(this, '__styles__');
+    const scopedBlock = scopedStyles[block]
+    const scopedHashString = scopedBlock.slice(scopedBlock.lastIndexOf('_') + 1)
 
     if (block && elemName) {
-      return elem(block, elemName);
+      return elem(block, elemName, scopedHashString);
     } else if (block) {
       return `${block}`;
     }
