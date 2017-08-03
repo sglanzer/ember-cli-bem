@@ -8,22 +8,22 @@ const {
   set,
 } = Ember;
 
-export function elem(block, elemName) {
-  return `${block}__${elemName}`;
+export function elem(block, elemName, scopedHashString) {
+  return `_${block}__${elemName}_${scopedHashString}`;
 }
 
-export function mod(block, modDefinition) {
+export function mod(block, modDefinition, scopedHashString) {
   const { modName, negativeModName, modValue } = modDefinition;
   const hasNegativeModName = typeof negativeModName !== 'undefined';
 
   if (typeof modValue === 'boolean') {
     if (hasNegativeModName && !modValue) {
-      return `${block}--${negativeModName}`;
+      return `_${block}--${negativeModName}_${scopedHashString}`;
     } else if (modValue) {
-      return `${block}--${modName}`;
+      return `_${block}--${modName}_${scopedHashString}`;
     }
   } else if (modValue) {
-    return `${block}--${modName}-${modValue}`;
+    return `_${block}--${modName}-${modValue}_${scopedHashString}`;
   }
 }
 
