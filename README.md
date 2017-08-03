@@ -55,7 +55,7 @@ import Ember from 'ember';
 import BEM from 'ember-cli-bem/mixins/bem';
 
 export default Ember.Component.extend({
-  blockName: 'button',
+  block: 'button',
   mods: ['type'],
   type: 'highlighted',
 });
@@ -66,7 +66,7 @@ about it in your components.
 
 ## Defining Blocks and Elements
 
-To define a [block](https://en.bem.info/methodology/key-concepts/#block) with `ember-cli-bem`, you should mix BEM mixin into your component. Blocks in `ember-cli-bem` requires only one field — `blockName`. If you left this property empty, component will throw an error. `blockName` just concatenates with `classNames` property.
+To define a [block](https://en.bem.info/methodology/key-concepts/#block) with `ember-cli-bem`, you should mix BEM mixin into your component. Blocks in `ember-cli-bem` requires only one field — `block`. If you left this property empty, component will throw an error. `block` just concatenates with `classNames` property.
 
 If you want to define an [element](https://en.bem.info/methodology/key-concepts/#element) component (with `block__element` class name and custom logic), you just add
 `elemName` property in component definition:
@@ -76,7 +76,7 @@ import Ember from 'ember';
 import BEM from 'ember-cli-bem/mixins/bem';
 
 export default Ember.Component.extend(BEM, {
-  blockName: 'button',
+  block: 'button',
   elemName: 'icon'
 });
 ```
@@ -92,7 +92,7 @@ import Ember from 'ember';
 import BEM from 'ember-cli-bem/mixins/bem';
 
 export default Ember.Component.extend(BEM, {
-  blockName: 'button',
+  block: 'button',
 
   mods: [
     'disabled',

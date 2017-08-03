@@ -8,14 +8,14 @@ const {
 const BLOCK_KEY = 'block';
 
 export default helper(function(params, hash) {
-  const blockName = hash[BLOCK_KEY];
+  const block = hash[BLOCK_KEY];
   const [ elemName ] = params;
 
-  if (!blockName) {
+  if (!block) {
     throw Error(`${BLOCK_KEY} is required for 'elem' helper`);
   }
 
-  const elemClassName = elem(blockName, elemName);
+  const elemClassName = elem(block, elemName);
 
   const modNames = Object.keys(hash).filter((key) => key !== BLOCK_KEY);
   const modClassNames = modNames.map((modName) => {

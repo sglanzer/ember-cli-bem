@@ -6,7 +6,7 @@ moduleForComponent('helper:element', 'Integration | Helper | element', {
   integration: true
 });
 
-test('it should get blockName by default', withChai(function(expect, assert) {
+test('it should get block by default', withChai(function(expect, assert) {
   assert.expect(1);
 
   this.set('block', 'foo');
@@ -15,7 +15,7 @@ test('it should get blockName by default', withChai(function(expect, assert) {
   expect(this.$().text().trim()).to.be.equal('foo__bar');
 }));
 
-test('it should use specified blockName', withChai(function(expect, assert) {
+test('it should use specified block', withChai(function(expect, assert) {
   assert.expect(1);
 
   this.render(hbs`{{element '123' block='abc'}}`);

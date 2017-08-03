@@ -8,22 +8,22 @@ const {
   set,
 } = Ember;
 
-export function elem(blockName, elemName) {
-  return `${blockName}__${elemName}`;
+export function elem(block, elemName) {
+  return `${block}__${elemName}`;
 }
 
-export function mod(blockName, modDefinition) {
+export function mod(block, modDefinition) {
   const { modName, negativeModName, modValue } = modDefinition;
   const hasNegativeModName = typeof negativeModName !== 'undefined';
 
   if (typeof modValue === 'boolean') {
     if (hasNegativeModName && !modValue) {
-      return `${blockName}--${negativeModName}`;
+      return `${block}--${negativeModName}`;
     } else if (modValue) {
-      return `${blockName}--${modName}`;
+      return `${block}--${modName}`;
     }
   } else if (modValue) {
-    return `${blockName}--${modName}-${modValue}`;
+    return `${block}--${modName}-${modValue}`;
   }
 }
 
@@ -35,7 +35,7 @@ export default Mixin.create({
   ],
   concatenatedProperties: ['mods'],
 
-  blockName: null,
+  block: null,
   elemName: null,
   mods: null,
 
@@ -56,14 +56,14 @@ export default Mixin.create({
     );
   },
 
-  blockClassName: computed('blockName', 'elemName', function() {
-    const blockName = get(this, 'blockName');
+  blockClassName: computed('block', 'elemName', function() {
+    const block = get(this, 'block');
     const elemName = get(this, 'elemName');
 
-    if (blockName && elemName) {
-      return elem(blockName, elemName);
-    } else if (blockName) {
-      return `${blockName}`;
+    if (block && elemName) {
+      return elem(block, elemName);
+    } else if (block) {
+      return `${block}`;
     }
   }),
 
