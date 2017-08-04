@@ -65,6 +65,7 @@
     "node": ">= 4"
   },
   "ember-addon": {
+    "before": "ember-css-modules",
     "configPath": "tests/dummy/config"
   }
 }
