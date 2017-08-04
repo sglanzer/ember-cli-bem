@@ -53,9 +53,9 @@ module.exports = {
     return this.appConfig.podModulePrefix && !this._isAddon() ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '';
   },
 
-  _namespacingIsEnabled: function() {
-    return this.addonConfig.namespacing !== false;
-  },
+  // _namespacingIsEnabled: function() {
+  //   return this.addonConfig.namespacing !== false;
+  // },
 
   _isAddon: function() {
     return Boolean(this.parent.parent);
@@ -106,7 +106,7 @@ module.exports = {
   // },
 
   treeForAddon: function(tree) {
-    if (this._namespacingIsEnabled()) {
+    // if (this._namespacingIsEnabled()) {
       var allPodStyles = new Merge(this._allPodStyles, {
         overwrite: true, // there are times (specifically with ember engines) where we run over the tree for twice. Should revist and find a way to prevent that in the future.
         annotation: 'Merge (ember-component-css merge all process styles for a complete list of styles)'
@@ -122,7 +122,7 @@ module.exports = {
         overwrite: true,
         annotation: 'Merge (ember-component-css merge names with addon tree)'
       });
-    }
+    // }
 
     return this._super.treeForAddon.call(this, tree);
   },
@@ -142,14 +142,14 @@ module.exports = {
     var podStyles = this._getStyleFunnel();
     this._allPodStyles.push(podStyles);
 
-    if (this._namespacingIsEnabled()) {
+    // if (this._namespacingIsEnabled()) {
       podStyles = new ProcessStyles(podStyles, {
         extensions: this.allowedStyleExtensions,
         classicStyleDir: this.classicStyleDir,
         terseClassNames: this.terseClassNames,
         annotation: 'Filter (ember-component-css process :--component with class names)'
       });
-    }
+    // }
 
     var styleManifest = new IncludeAll(podStyles, {
       outputFileName: 'pod-styles',
