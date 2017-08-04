@@ -22,7 +22,22 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.0.0"
+    "broccoli-concat": "^3.0.5",
+    "broccoli-funnel": "^1.0.9",
+    "broccoli-merge-trees": "^2.0.0",
+    "broccoli-persistent-filter": "1.2.13",
+    "broccoli-plugin": "^1.2.1",
+    "broccoli-style-manifest": "^1.1.0",
+    "ember-cli-babel": "^6.0.0",
+    "ember-getowner-polyfill": "^1.1.1",
+    "fs-tree-diff": "^0.5.6",
+    "md5": "^2.1.0",
+    "postcss": "^5.2.10",
+    "postcss-less": "^0.15.0",
+    "postcss-scss": "^0.4.0",
+    "postcss-selector-namespace": "^1.3.0",
+    "rsvp": "^3.2.1",
+    "walk-sync": "^0.3.1"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
