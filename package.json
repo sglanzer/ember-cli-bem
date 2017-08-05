@@ -4,7 +4,8 @@
   "description": "BEM naming for your Ember project",
   "keywords": [
     "bem",
-    "ember-addon"
+    "ember-addon",
+    "ember-css-modules-plugin"
   ],
   "license": "MIT",
   "author": "",

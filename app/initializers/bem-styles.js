@@ -5,6 +5,7 @@ import BEM from 'ember-cli-bem/mixins/bem'
 const {
   Component,
   ComponentLookup,
+  Controller,
   computed,
   getOwner
 } = Ember
@@ -24,6 +25,10 @@ const {
 // })
 
 Component.reopen(BEM, {
+
+})
+
+Controller.reopen(BEM, {
 
 })
 

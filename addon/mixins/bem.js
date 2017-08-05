@@ -38,7 +38,6 @@ export default Mixin.create({
   ],
   concatenatedProperties: ['mods'],
 
-  block: null,
   elemName: null,
   mods: null,
 
@@ -59,12 +58,20 @@ export default Mixin.create({
     );
   },
 
+  block: computed(function() {
+    return (this._debugContainerKey || '').replace('component:', '').replace('controller:', '');
+  }),
+
   blockClassName: computed('block', 'elemName', '__styles__', function() {
     const block = get(this, 'block');
     const elemName = get(this, 'elemName');
+
+    let scopedHashString = ''
     const scopedStyles = get(this, '__styles__');
-    const scopedBlock = scopedStyles[block]
-    const scopedHashString = scopedBlock.slice(scopedBlock.lastIndexOf('_') + 1)
+    if (scopedStyles) {
+      const scopedBlock = scopedStyles[block]
+      scopedHashString = scopedBlock.slice(scopedBlock.lastIndexOf('_') + 1)
+    }
 
     if (block && elemName) {
       return elem(block, elemName, scopedHashString);

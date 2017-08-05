@@ -1,6 +1,8 @@
 /* eslint-env node */
 'use strict';
 
+const path = require('path')
+var postcss = require('postcss')
 var Funnel = require('broccoli-funnel');
 var Merge = require('broccoli-merge-trees');
 var ProcessStyles = require('./lib/pod-style.js');
@@ -8,9 +10,15 @@ var ExtractNames = require('./lib/pod-names.js');
 var IncludeAll = require('broccoli-style-manifest');
 var HtmlbarsPlugin = require('./lib/htmlbars-plugin');
 
+const Plugin = require('ember-css-modules/lib/plugin');
+
 module.exports = {
 
   name: 'ember-cli-bem',
+
+  createCssModulesPlugin(parent) {
+    return new LocalizePlugin(parent);
+  },
 
   setupPreprocessorRegistry: function(type, registry) {
     // Skip if we're setting up this addon's own registry
@@ -163,3 +171,22 @@ module.exports = {
     return tree;
   }
 };
+
+class LocalizePlugin extends Plugin {
+  config(env, baseConfig) {
+    this.addPostcssPlugin(baseConfig, 'before', this._makePlugin());
+  }
+
+  _makePlugin() {
+    return postcss.plugin('ember-css-modules-bem', () => (css) => {
+      css.walkAtRules(rule => {
+        if (rule.params === ':--this') {
+          const source = css.source.input.file
+          const sourcePath = source.substr(0, source.lastIndexOf(path.sep))
+          const contextDir = sourcePath.substr(sourcePath.lastIndexOf(path.sep) + 1)
+          rule.params = contextDir
+        }
+      })
+    })
+  }
+}
